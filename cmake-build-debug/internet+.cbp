@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="internet+"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="internet+.elf">
+				<Option output="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/internet+.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DSTM32F103xB"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1/arm-none-eabi"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1/backward"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/include"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/include-fixed"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 internet+.elf"/>
+					<CompileFile command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="internet+.elf/fast">
+				<Option output="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/internet+.elf" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DUSE_HAL_DRIVER"/>
+					<Add option="-DSTM32F103xB"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
+					<Add directory="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1/arm-none-eabi"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include/c++/5.4.1/backward"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/include"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/include-fixed"/>
+					<Add directory="d:\install\gcc-arm-none-eabi\bin\../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 internet+.elf/fast"/>
+					<CompileFile command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Install/Mingw/bin/mingw32-make.exe -f &quot;E:/Embedded/STM32/STM32F103c8t6/internet+/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/adc.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/bh1750.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/gpio.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/i2c.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/main.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/oled.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/oledfont.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/stm32f1xx_hal_conf.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/stm32f1xx_it.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Inc/usart.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/adc.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/bh1750.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/gpio.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/i2c.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/main.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/oled.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/stm32f1xx_hal_msp.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/stm32f1xx_it.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/syscalls.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/system_stm32f1xx.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Core/Src/usart.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Device/ST/STM32F1xx/License.md">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_armcc.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_armclang.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_compiler.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_gcc.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_iccarm.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/cmsis_version.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_armv8mbl.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_armv8mml.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm0.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm0plus.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm1.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm23.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm3.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm33.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm4.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_cm7.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_sc000.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/core_sc300.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/mpu_armv7.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/mpu_armv8.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/Include/tz_context.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/CMSIS/LICENSE.txt">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/License.md">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/STM32F103C8Tx_FLASH.ld">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/startup/startup_stm32f103xb.s">
+			<Option target="internet+.elf"/>
+		</Unit>
+		<Unit filename="E:/Embedded/STM32/STM32F103c8t6/internet+/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
