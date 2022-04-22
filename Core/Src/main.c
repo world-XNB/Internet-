@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -28,6 +29,7 @@
 #include "stdio.h"
 #include "oled.h"
 #include "bh1750.h"
+#include "RS485.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,7 +49,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-u_char rec1;//usart1接受数据
 u_char rec2;//usart2接受数据
 
 uint16_t light;//光强
@@ -57,6 +58,8 @@ float vol;//电压值
 float hum;//湿度百分比的分子部分
 
 uint8_t Hum;
+
+uint8_t uart1Data;//RS485数据
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,10 +104,11 @@ int main(void) {
     MX_I2C1_Init();
     MX_I2C2_Init();
     MX_ADC1_Init();
+    MX_TIM1_Init();
     /* USER CODE BEGIN 2 */
     OLED_Init();
     OLED_Clear();
-    HAL_UART_Receive_IT(&huart1, &rec1, 1);
+    HAL_UART_Receive_IT(&huart1, &uart1Data, 1);
     HAL_UART_Receive_IT(&huart2, &rec2, 1);
     HAL_ADC_Start_IT(&hadc1);
 
@@ -121,11 +125,9 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        printf("hello!");
-
-
 //        GY30();
 //        dataTran();
+//        askK();
     }
     /* USER CODE END 3 */
 }
@@ -198,44 +200,6 @@ void connectIP() {
     HAL_Delay(1000);
 }
 
-//usart中断方式接受数据
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-    if (huart->Instance == USART1) {
-        if (rec1 == '1') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led on!\r\n", 7);
-        }
-        if (rec1 == '0') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led off!\r\n", 8);
-        }
-        HAL_UART_Receive_IT(&huart1, &rec1, 1);
-    } else if (huart->Instance == USART2) {//从服务器端发送数据到esp8266，然后串口接收到主控板stm32
-        if (rec2 == '1') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led on!\r\n", 7);
-        } else if (rec2 == '0') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led off!\r\n", 8);
-        } else if (rec2 == '2') {
-            dataTran();
-        }
-        HAL_UART_Receive_IT(&huart2, &rec2, 1);
-    }
-}
-
 //GY30测试(光照测试)
 void GY30() {
     uint8_t dat[2] = {0};
@@ -252,6 +216,79 @@ void GY30() {
         //printf("recv fail");
     }
     HAL_Delay(1000);
+}
+
+//数据传输给网络服务器（网络调试助手）
+void dataTran() {
+    u_char str1[8] = "light:";
+    u_char str2[6] = "\nHum:";
+    printf("光照强度： %d\n", light);
+    uint8_t h, l;//用来存取light的高八位和低八位
+    h = light % 256;
+    l = light / 256;
+    printf("土壤湿度： %.2f\n", hum);
+    Hum = hum;//转换为整数
+    HAL_UART_Transmit(&huart2, str1, sizeof(str1), 100);
+    HAL_UART_Transmit(&huart2, &l, sizeof(l), 100);
+    HAL_UART_Transmit(&huart2, &h, sizeof(h), 100);
+    HAL_UART_Transmit(&huart2, str2, sizeof(str2), 100);
+    HAL_UART_Transmit(&huart2, &Hum, sizeof(Hum), 100);
+}
+
+//usart中断方式接受数据
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART1) {
+        HAL_TIM_Base_Stop_IT(&htim1);
+        HAL_UART_Receive_IT(&huart1, &uart1Data, 1);
+        uart2WriteByte(uart1Data);
+        HAL_TIM_Base_Start_IT(&htim1);//开始计时7.2ms，即modbus设备在4800波特率下传输一帧数据的时间间隔
+
+//        if (rec1 == '1') {
+//            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+//            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+//            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+//            OLED_Clear();
+//            OLED_ShowString(0, 0, "led on!\r\n", 7);
+//        }
+//        if (rec1 == '0') {
+//            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+//            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+//            OLED_Clear();
+//            OLED_ShowString(0, 0, "led off!\r\n", 8);
+//        }
+//        HAL_UART_Receive_IT(&huart1, &rec1, 1);
+
+    } else if (huart->Instance == USART2) {//从服务器端发送数据到esp8266，然后串口接收到主控板stm32
+        if (rec2 == '0') {
+            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+            OLED_Clear();
+            OLED_ShowString(0, 0, "led off!\r\n", 8);
+        } else if (rec2 == '1') {
+            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+            OLED_Clear();
+            OLED_ShowString(0, 0, "led on!\r\n", 7);
+        } else if (rec2 == '2') {
+            dataTran();
+        } else if (rec2 == '3') {
+            for (int i = 0; i < 100; ++i) {
+                askN();
+            }
+        } else if (rec2 == '4') {
+            for (int i = 0; i < 100; ++i) {
+                askP();
+            }
+        } else if (rec2 == '5') {
+            for (int i = 0; i < 100; ++i) {
+                askK();
+            }
+        }
+        HAL_UART_Receive_IT(&huart2, &rec2, 1);
+    }
 }
 
 //这是中断回调函数
@@ -272,21 +309,13 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
     HAL_ADC_Start_IT(hadc);
 }
 
-//数据传输给网络服务器（网络调试助手）
-void dataTran() {
-    u_char str1[8] = "light:";
-    u_char str2[6] = "\nHum:";
-    printf("光照强度： %d\n", light);
-    uint8_t h, l;//用来存取light的高八位和低八位
-    h = light % 256;
-    l = light / 256;
-    printf("土壤湿度： %.2f\n", hum);
-    Hum = hum;//转换为整数
-    HAL_UART_Transmit(&huart2, str1, sizeof(str1), 100);
-    HAL_UART_Transmit(&huart2, &l, sizeof(l), 100);
-    HAL_UART_Transmit(&huart2, &h, sizeof(h), 100);
-    HAL_UART_Transmit(&huart2, str2, sizeof(str2), 100);
-    HAL_UART_Transmit(&huart2, &Hum, sizeof(Hum), 100);
+//定时器1回调函数
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+    if (htim == (&htim1)) {
+        HAL_TIM_Base_Stop_IT(&htim1);
+        Modbus_Work();//RS485处理数据部分
+        queueInit();
+    }
 }
 /* USER CODE END 0 */
 

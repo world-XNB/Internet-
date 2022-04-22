@@ -128,6 +128,30 @@ internet+.elf/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/build
 .PHONY : internet+.elf/fast
 
+Core/Src/RS485.obj: Core/Src/RS485.c.obj
+.PHONY : Core/Src/RS485.obj
+
+# target to build an object file
+Core/Src/RS485.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/RS485.c.obj
+.PHONY : Core/Src/RS485.c.obj
+
+Core/Src/RS485.i: Core/Src/RS485.c.i
+.PHONY : Core/Src/RS485.i
+
+# target to preprocess a source file
+Core/Src/RS485.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/RS485.c.i
+.PHONY : Core/Src/RS485.c.i
+
+Core/Src/RS485.s: Core/Src/RS485.c.s
+.PHONY : Core/Src/RS485.s
+
+# target to generate assembly for a file
+Core/Src/RS485.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/RS485.c.s
+.PHONY : Core/Src/RS485.c.s
+
 Core/Src/adc.obj: Core/Src/adc.c.obj
 .PHONY : Core/Src/adc.obj
 
@@ -367,6 +391,30 @@ Core/Src/system_stm32f1xx.s: Core/Src/system_stm32f1xx.c.s
 Core/Src/system_stm32f1xx.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/system_stm32f1xx.c.s
 .PHONY : Core/Src/system_stm32f1xx.c.s
+
+Core/Src/tim.obj: Core/Src/tim.c.obj
+.PHONY : Core/Src/tim.obj
+
+# target to build an object file
+Core/Src/tim.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/tim.c.obj
+.PHONY : Core/Src/tim.c.obj
+
+Core/Src/tim.i: Core/Src/tim.c.i
+.PHONY : Core/Src/tim.i
+
+# target to preprocess a source file
+Core/Src/tim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/tim.c.i
+.PHONY : Core/Src/tim.c.i
+
+Core/Src/tim.s: Core/Src/tim.c.s
+.PHONY : Core/Src/tim.s
+
+# target to generate assembly for a file
+Core/Src/tim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\internet+.elf.dir\build.make CMakeFiles/internet+.elf.dir/Core/Src/tim.c.s
+.PHONY : Core/Src/tim.c.s
 
 Core/Src/usart.obj: Core/Src/usart.c.obj
 .PHONY : Core/Src/usart.obj
@@ -817,6 +865,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... internet+.elf
+	@echo ... Core/Src/RS485.obj
+	@echo ... Core/Src/RS485.i
+	@echo ... Core/Src/RS485.s
 	@echo ... Core/Src/adc.obj
 	@echo ... Core/Src/adc.i
 	@echo ... Core/Src/adc.s
@@ -847,6 +898,9 @@ help:
 	@echo ... Core/Src/system_stm32f1xx.obj
 	@echo ... Core/Src/system_stm32f1xx.i
 	@echo ... Core/Src/system_stm32f1xx.s
+	@echo ... Core/Src/tim.obj
+	@echo ... Core/Src/tim.i
+	@echo ... Core/Src/tim.s
 	@echo ... Core/Src/usart.obj
 	@echo ... Core/Src/usart.i
 	@echo ... Core/Src/usart.s

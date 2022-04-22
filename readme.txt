@@ -8,7 +8,7 @@ STM32F103C8T6最小系统板：主控板的相关资料
 
 
 引脚分配：
-	usart1——printf重定向，串口调试
+	usart1——printf重定向，串口调试(后改为RS485转串口)
 	usart2——连接esp8266，数据传输
 	i2c1——连接OLED显示屏(oled.c/oled.h/oledfont.h)
 	i2c2——连接GY-30(bh1750.c/bh1750.h)
