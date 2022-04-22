@@ -121,8 +121,11 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        GY30();
-        dataTran();
+        printf("hello!");
+
+
+//        GY30();
+//        dataTran();
     }
     /* USER CODE END 3 */
 }
