@@ -31,7 +31,7 @@ void uart2WriteByte(uint8_t);
 
 void Buffer_Puts(Buffer_t *, uint8_t, uint16_t);
 
-uint16_t CRC_16(uint8_t *vptr, uint8_t len);
+//uint16_t CRC_16(uint8_t *vptr, uint8_t len);
 
 double Modbus_Work(void);
 

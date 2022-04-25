@@ -57,8 +57,6 @@ float adc_value;//ADC转换值存放
 float vol;//电压值
 float hum;//湿度百分比的分子部分
 
-uint8_t Hum;
-
 uint8_t uart1Data;//RS485数据
 /* USER CODE END PV */
 
@@ -112,7 +110,6 @@ int main(void) {
     HAL_UART_Receive_IT(&huart2, &rec2, 1);
     HAL_ADC_Start_IT(&hadc1);
 
-
     start();
     connectIP();
     OLED_Clear();
@@ -125,9 +122,41 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-//        GY30();
-//        dataTran();
-//        askK();
+        if (rec2 == '0') {
+            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
+            OLED_Clear();
+            OLED_ShowString(0, 0, "led off!\r\n", 8);
+        } else if (rec2 == '1') {
+            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
+            OLED_Clear();
+            OLED_ShowString(0, 0, "led on!\r\n", 7);
+        } else if (rec2 == '2') {//光照
+            GY30();//开始检测光照
+            uint8_t h, l;//用来存取light的高八位和低八位
+            h = light % 256;
+            l = light / 256;
+            HAL_UART_Transmit(&huart2, &l, sizeof(l), 100);
+            HAL_UART_Transmit(&huart2, &h, sizeof(h), 100);
+            OLED_Clear();
+            OLED_ShowNum(0, 0, h, 2, sizeof(h));
+            OLED_ShowNum(1, 1, l, 2, sizeof(l));
+        } else if (rec2 == '3') {//湿度
+            uint8_t Hum;
+            Hum = (uint8_t) hum;//转换为整数
+            HAL_UART_Transmit(&huart2, &Hum, sizeof(Hum), 100);
+            OLED_Clear();
+            OLED_ShowNum(1, 1, Hum, 10, sizeof(Hum));
+        } else if (rec2 == '4') //氮
+            askN();
+        else if (rec2 == '5')//磷
+            askP();
+        else if (rec2 == '6')//钾
+            askK();
+        HAL_Delay(1000);
     }
     /* USER CODE END 3 */
 }
@@ -215,23 +244,24 @@ void GY30() {
     } else {
         //printf("recv fail");
     }
-    HAL_Delay(1000);
 }
 
 //数据传输给网络服务器（网络调试助手）
 void dataTran() {
-    u_char str1[8] = "light:";
-    u_char str2[6] = "\nHum:";
-    printf("光照强度： %d\n", light);
+//    u_char str1[8] = "light:";
+//    u_char str2[6] = "\nHum:";
+    uint8_t Hum;
+//    printf("光照强度： %d\n", light);
     uint8_t h, l;//用来存取light的高八位和低八位
     h = light % 256;
     l = light / 256;
-    printf("土壤湿度： %.2f\n", hum);
-    Hum = hum;//转换为整数
-    HAL_UART_Transmit(&huart2, str1, sizeof(str1), 100);
+//    printf("土壤湿度： %.2f\n", hum);
+    Hum = (uint8_t) hum;//转换为整数
+//    HAL_UART_Transmit(&huart2, str1, sizeof(str1), 100);
     HAL_UART_Transmit(&huart2, &l, sizeof(l), 100);
     HAL_UART_Transmit(&huart2, &h, sizeof(h), 100);
-    HAL_UART_Transmit(&huart2, str2, sizeof(str2), 100);
+
+//    HAL_UART_Transmit(&huart2, str2, sizeof(str2), 100);
     HAL_UART_Transmit(&huart2, &Hum, sizeof(Hum), 100);
 }
 
@@ -242,51 +272,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
         HAL_UART_Receive_IT(&huart1, &uart1Data, 1);
         uart2WriteByte(uart1Data);
         HAL_TIM_Base_Start_IT(&htim1);//开始计时7.2ms，即modbus设备在4800波特率下传输一帧数据的时间间隔
-
-//        if (rec1 == '1') {
-//            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-//            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-//            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-//            OLED_Clear();
-//            OLED_ShowString(0, 0, "led on!\r\n", 7);
-//        }
-//        if (rec1 == '0') {
-//            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-//            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-//            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-//            OLED_Clear();
-//            OLED_ShowString(0, 0, "led off!\r\n", 8);
-//        }
-//        HAL_UART_Receive_IT(&huart1, &rec1, 1);
-
     } else if (huart->Instance == USART2) {//从服务器端发送数据到esp8266，然后串口接收到主控板stm32
-        if (rec2 == '0') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-            HAL_UART_Transmit(&huart2, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led off!\r\n", sizeof("led off!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led off!\r\n", 8);
-        } else if (rec2 == '1') {
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-            HAL_UART_Transmit(&huart2, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            HAL_UART_Transmit(&huart1, "led on!\r\n", sizeof("led on!\r\n"), 10000);
-            OLED_Clear();
-            OLED_ShowString(0, 0, "led on!\r\n", 7);
-        } else if (rec2 == '2') {
-            dataTran();
-        } else if (rec2 == '3') {
-            for (int i = 0; i < 100; ++i) {
-                askN();
-            }
-        } else if (rec2 == '4') {
-            for (int i = 0; i < 100; ++i) {
-                askP();
-            }
-        } else if (rec2 == '5') {
-            for (int i = 0; i < 100; ++i) {
-                askK();
-            }
-        }
         HAL_UART_Receive_IT(&huart2, &rec2, 1);
     }
 }

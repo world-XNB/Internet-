@@ -15,10 +15,10 @@ void queueInit() {
 }
 
 void askN() {
-    queueInit();
     uint8_t ask1[8] = {0x01, 0X03, 0X00, 0X1E, 0X00, 0X01, 0XE4, 0X0C};//问询帧  氮
+    queueInit();
     HAL_UART_Transmit(&huart1, ask1, sizeof(ask1), 0xffff);
-    HAL_Delay(100);
+    HAL_Delay(200);
 }
 
 void askP() {
